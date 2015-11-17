@@ -1,48 +1,152 @@
 <?php
 
-$data = curl_get_request("http://localhost:8080/calendar/paul.html");
+$data = curl_get_request("http://localhost:8080/cinema/check?day=02&movie=01");
 //var_dump($data);
 
-$dom = new DOMDocument();
+
 $result = array();
+
+$dom = new DomDocument();
 
 if($dom->loadHTML($data))
 {
-$xpath= new DOMXPath($dom);
-    //$items = $xpath->query('//UL[@id = "blogs-list"]');
-    $days = $xpath->query('//table//th');
-    $ok = $xpath->query('//table//td');
+    $xpath = new DOMXPath($dom);
 
+    $items = $xpath->query("/html");
 
-
-    $NodeDayValue = array();
-    $i = 1;
-    foreach ($days as $day)
+    foreach ($items as $item)
     {
-        $NodeDayValue[$i] = $day->nodeValue;
-        $i++;
+        $r[] = $item->nodeValue;
     }
 
-    $j = 1;
-    foreach ($ok as $isOk)
-    {
-        $result[$j] = array("day" => $NodeDayValue[$j], "isOk" => $isOk->nodeValue);
-        $j++;
+    foreach ($r as $key => $value) {
+        echo "test <br />Key: $key; Value: $value<br />\n";
     }
 
+    $result = array();
 
-    $last = count($result) - 1;
+    foreach ($r as $key => $value) {
 
-    foreach ($result as $i => $row)
-    {
-        $isFirst = ($i == 0);
+        foreach (json_decode($value) as $mkey => $mvalue)
+        {
+            # code...
+            //var_dump($mvalue);
+            if($mvalue->status == 1)
+            {
+                foreach ($days as $dkey => $dvalue)
+                {
 
-        $isLast = ($i == $last);
+                    foreach ($movies as $ykey => $yvalue)
+                    {
 
-        echo $row['day'] .'<br>'. $row['isOk'] .'<br>';
+                        if($mvalue->movie == $ykey)
+                        {
+                            $result[] = array(
+                                "time" => $mvalue->time,
+                                "movieid" => $mvalue->movie,
+                                "movieName" => $yvalue,
+                                "dayName" => $dvalue
+                            );
+                        }
+
+                    }
+                }
+            }
+        }
+
+    }
+
+    foreach ($result as $key => $value) {
+        echo "<br />Key: $key; Value: $value<br />\n";
+    }
+
 }
 
 
+/*
+$result = array();
+$dom = new DomDocument();
+
+if($dom->loadHTML($data)){
+    $xpath = new DOMXPath($dom);
+    $itemsValues = $xpath->query("//select[@id='movie']/option[not(contains(@disabled, 'disabled'))]/@value");// hämtar alla valus från film listan
+    $items = $xpath->query("//select[@id='movie']/option[not(contains(@disabled, 'disabled'))]");// namn på filmerna
+
+    $i=0;
+    foreach ($items as $item) {
+        $result[$itemsValues->item($i)->value] = $item->nodeValue;// till delar array value och respektive film den till hör
+        $i++;
+    }
+
+    foreach ($result as $key => $value) {
+        echo "<br />Key: $key; Value: $value<br />\n";
+    }
+
+
+
+}else
+{
+    die("blev fell när skrapa hemtade filmerna och deras value");
+}*/
+
+/*
+$dom = new DOMDocument();
+$result = array();
+
+
+if($dom->loadHTML($data))
+{
+    $xpath = new DOMXPath($dom);
+    $itemValues = $xpath->query("//select[@id='day']/option[not(contains(@disabled, 'disabled'))]/@value");
+    $items = $xpath->query("//select[@id='day']/option[not(contains(@disabled, 'disabled'))]");
+
+    $i=0;
+    foreach ($items as $item)
+    {
+        //$text = $itemValues->item($i)->value = $item->nodeValue;
+        //echo 'Marco33 <br><br>'. $text .'<br><br>' ;
+        //echo 'Marco <br>'. $item->nodeValue .'<br>' ;
+       // echo 'Marcotest3 <br>'. $itemValues->item($i)->value . $item->nodeValue .'<br>';
+
+        //$result[$item->nodeValue] = $item->nodeValue;
+        $result[$itemValues->item($i)->value] = $item->nodeValue;
+        $i++;
+
+    }
+
+    foreach ($itemValues  as $item1)
+    {
+        echo 'Marco2 <br>'. $item1->nodeValue .'<br>' ;
+
+    }
+    //var_dump($items);
+    //var_dump( $itemValues);
+    //echo '<br>'. $items .'<br>';
+
+    /*var_dump(array_keys($result));
+    echo '<br>';
+    var_dump(array_values($result)) ;
+    echo '<br>';
+    echo '<br>';
+    echo 'Hej1<br>';
+    var_dump($item->nodeValue) ;
+    echo '<br>';
+    echo 'hej2<br>';
+
+    $M = 0;
+    var_dump($itemValues->item($M)->value);*/
+
+   /*foreach ($items as $value) {
+        echo '<br>';
+        echo '<br>';
+        echo $value->nodeValue;
+    }
+
+
+
+    foreach ($result as $key => $value) {
+        echo "<br />Key: $key; Value: $value<br />\n";
+    }
 
 }
 else
@@ -50,6 +154,7 @@ else
     diw("fel vid in slsning av HTML");
 }
 
+*/
     function curl_get_request($url)
     {
         $ch = curl_init();// startar CURL session
