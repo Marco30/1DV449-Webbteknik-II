@@ -1,14 +1,14 @@
 <?php
 
 
-
 class GetCalendarsInfo
 {
 
     private $URLAddress;
     private $cURL;
-    private $PersonalCalendarInfo = array();// Array objekt som ska hÂlla alla kal‰nder info
+    private $PersonalCalendarInfo = array();// Array objekt som ska h√•lla alla kal√§nder info
     private $HTMLdata;
+    private $links;
 
     public function __construct($iURL, CURL $iCURL)
     {
@@ -16,19 +16,19 @@ class GetCalendarsInfo
 
         $this->cURL = $iCURL;
 
-        $this->HTMLdata = $this->cURL->CURLGet($this->URLAddress); // gˆr en CURL rekest och h‰mtar alla data som finns pÂ kalender sidan
+        $this->HTMLdata = $this->cURL->CURLGet($this->URLAddress); // g√∂r en CURL rekest och h√§mtar alla data som finns p√• kalender sidan
 
-        $links = $this->GetAllCalendarLinks($this->HTMLdata);// hittar och h‰mtar all l‰nkar som finn i datan som h‰mtatas frÂn kalender sidan
+        $this->links = $this->GetAllCalendarLinks($this->HTMLdata);// hittar och h√§mtar all l√§nkar som finn i datan som h√§mtatas fr√•n kalender sidan
 
-        foreach ($links as $link)// loppar igenom links arrayen som har alla l‰nkar
+        foreach ($this->links as $link)// loppar igenom links arrayen som har alla l√§nkar
         {
-            //SlÂr ihop URL adressen till kalender sidan med varje person kalender l‰nk som vi fÂt frÂn funktionen GetAllCalendarLinks
-            $this->PersonalCalendarInfo[] = $this->GetCalendarData($this->cURL->CURLGet($this->URLAddress.$link));//slÂr ihop l‰nkarnar och h‰r h‰mtar vi varje persons kalender information
+            //Sl√•r ihop URL adressen till kalender sidan med varje person kalender l√§nk som vi f√•t fr√•n funktionen GetAllCalendarLinks
+            $this->PersonalCalendarInfo[] = $this->GetCalendarData($this->cURL->CURLGet($this->URLAddress.$link));//sl√•r ihop l√§nkarnar och h√§r h√§mtar vi varje persons kalender information
         }
 
     }
 
-    private function GetAllCalendarLinks($iHTML)// h‰mtar alla tre l‰nkar som finn i kallender sidan
+    private function GetAllCalendarLinks($iHTML)// h√§mtar alla tre l√§nkar som finn i kallender sidan
     {
         $AllLinks = array();
 
@@ -38,7 +38,7 @@ class GetCalendarsInfo
         {
             $xpath = new DOMXPath($dom);
 
-            $items = $xpath->query('//ul//a/@href');//anv‰nder  expression fˆr att h‰mtar alla lenkar
+            $items = $xpath->query('//ul//a/@href');//anv√§nder  expression f√∂r att h√§mtar alla lenkar
 
             foreach ($items as $item)
             {
@@ -60,13 +60,13 @@ class GetCalendarsInfo
         $CalendarPersonData = array();
         $dom = new DomDocument(); // nyt dom objekt
 
-        if($dom->loadHTML($iHTML))//if satsen kˆrs om man laddat html i objektet
+        if($dom->loadHTML($iHTML))//if satsen k√∂rs om man laddat html i objektet
         {
-            $xpath = new DOMXPath($dom);// Fˆr att h‰mta valda html tag sÂ anv‰nder jag DomXPath
+            $xpath = new DOMXPath($dom);// F√∂r att h√§mta valda html tag s√• anv√§nder jag DomXPath
 
-            $AllDays = $xpath->query('//table//th');//anv‰nder  expression fˆr att h‰mtar alla dagar
+            $AllDays = $xpath->query('//table//th');//anv√§nder  expression f√∂r att h√§mtar alla dagar
 
-            $AllOks = $xpath->query('//table//td');//anv‰nder  expression fˆr att h‰mtar alla ok
+            $AllOks = $xpath->query('//table//td');//anv√§nder  expression f√∂r att h√§mtar alla ok
 
 
             $ALLDaysData = array();
@@ -81,7 +81,7 @@ class GetCalendarsInfo
             $M2 = 0;
             foreach ($AllOks as $Available)
             {
-                $CalendarPersonData[$M2] = array("day" => $ALLDaysData[$M2], "Available" => $Available->nodeValue); // skapar en multi-dimensional array med day = dagar och Available = med n‰r person ‰r ledig
+                $CalendarPersonData[$M2] = array("day" => $ALLDaysData[$M2], "Available" => $Available->nodeValue); // skapar en multi-dimensional array med day = dagar och Available = med n√§r person √§r ledig
                 $M2++;
             }
 
@@ -90,17 +90,20 @@ class GetCalendarsInfo
         }
         else
         {
-            die("blev fel n‰r man h‰mtade kalender datin info om dag och om ledig");
+            die("blev fel n√§r man h√§mtade kalender datin info om dag och om ledig");
         }
     }
 
     public function DayEveryoneAvailable()
     {
+        $EveryonesAvailabelDay = array();
         $Days = array("Friday" => 0, "Saturday" => 0, "Sunday" => 0);
+        $EveryonesAvailabelDayInSV = array();
+        $TranslatDaysSV = array("friday" => "fredag", "saturday" => "l√∂rdag","sunday" => "s√∂ndag");
 
         foreach ($this->PersonalCalendarInfo as $days => $daysValue)
         {
-            foreach ($this->PersonalCalendarInfo[$days] as $key => $OkValue)// lopar i genom och plusa en ett pÂ den dagen som matchar if satsen och den som fÂr mest ‰r den dag som alla ‰r ledig pÂ
+            foreach ($this->PersonalCalendarInfo[$days] as $key => $OkValue)// lopar i genom och plusa en ett p√• den dagen som matchar if satsen och den som f√•r mest √§r den dag som alla √§r ledig p√•
             {
                 if(preg_match("/ok/i", $OkValue["Available"]))
                 {
@@ -110,19 +113,37 @@ class GetCalendarsInfo
             }
         }
 
-        $EveryonesAvailabelDay = array();
 
         $OkValue = max($Days);
-        $key1 = array_search($OkValue, $Days);// fÂr fram dagen dÂ flest kunde
+        $key1 = array_search($OkValue, $Days);// f√•r fram dagen d√• flest kunde
         $EveryonesAvailabelDay[$key1] = $key1;//till delar dagen till arrayen
 
-        // av‰nd fˆr att testa echo 'test<br>' . $EveryonesAvailabelDay[$key1] . '<br>';
+        // av√§nd f√∂r att testa echo 'test<br>' . $EveryonesAvailabelDay[$key1] . '<br>';
 
         /*foreach ($EveryonesAvailabelDay as $key => $value) {
             echo "<br />Key: $key; Value: $value<br />\n";
         }*/
 
-        return $EveryonesAvailabelDay;
+
+        foreach ($EveryonesAvailabelDay as $enKey => $value)
+        {
+
+            foreach ($TranslatDaysSV as $mixKey => $enValue)
+            {
+                if(preg_match("/".$enKey."/i", $mixKey))
+                {
+                    $EveryonesAvailabelDayInSV[] = $TranslatDaysSV[$mixKey];
+                }
+            }
+        }
+
+        // testa
+        /*foreach ($EveryonesAvailabelDayInSV as $key => $value) {
+            echo "<br />Key: $key; Value: $value<br />\n";
+        }*/
+
+        return $EveryonesAvailabelDayInSV;
+
     }
 
 }
