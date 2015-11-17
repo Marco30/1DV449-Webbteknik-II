@@ -172,14 +172,14 @@ class GetMovieInfo
                         foreach ($Days as $dkey => $MovieDayvalue)// löper igneom array som har dagen man ska gå på bio
                         {
 
-                            /*foreach ($days as $key => $value)
+                            /*foreach ($Days as $key => $value)
             {
                 echo "test 77<br />Key: $key; Value: $value<br />\n";
             }*/
 
                             foreach ($Movies as $MovieIDkey => $MovieNameValue)// löper i genom alla filmer som finns
                             {
-                                /*foreach ($movies as $key => $value)
+                                /*foreach ($Movies as $key => $value)
                                 {
                                     echo "test 88<br />Key: $key; Value: $value<br />\n";
                                 } */
