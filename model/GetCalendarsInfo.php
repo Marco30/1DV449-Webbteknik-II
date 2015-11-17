@@ -1,5 +1,6 @@
 <?php
 //Marco villegas
+namespace model;
 
 class GetCalendarsInfo
 {
@@ -32,11 +33,11 @@ class GetCalendarsInfo
     {
         $AllLinks = array();
 
-        $dom = new DomDocument();
+        $dom = new \DomDocument();
 
         if($dom->loadHTML($iHTML))
         {
-            $xpath = new DOMXPath($dom);
+            $xpath = new \DOMXPath($dom);
 
             $items = $xpath->query('//ul//a/@href');//använder  expression för att hämtar alla lenkar
 
@@ -58,11 +59,11 @@ class GetCalendarsInfo
     {
 
         $CalendarPersonData = array();
-        $dom = new DomDocument(); // nyt dom objekt
+        $dom = new \DomDocument(); // nyt dom objekt
 
         if($dom->loadHTML($iHTML))//if satsen körs om man laddat html i objektet
         {
-            $xpath = new DOMXPath($dom);// För att hämta valda html tag så använder jag DomXPath
+            $xpath = new \DOMXPath($dom);// För att hämta valda html tag så använder jag DomXPath
 
             $AllDays = $xpath->query('//table//th');//använder  expression för att hämtar alla dagar
 

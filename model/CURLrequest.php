@@ -1,5 +1,7 @@
 <?php
 //Marco villegas
+namespace model;
+
 class CURL
 {
 
@@ -7,13 +9,13 @@ class CURL
     {
         $CURLsession = curl_init();// startar CURL session
 
-        curl_setopt($CURLsession, CURLOPT_URL, $iURL);// URL som vi ska hämta
+        curl_setopt($CURLsession, CURLOPT_URL, $iURL);// URL som vi ska hÃ¤mta
 
-        curl_setopt($CURLsession, CURLOPT_RETURNTRANSFER, 1); //om den är inställd på true, så får man tillbaka dat som en sträng
+        curl_setopt($CURLsession, CURLOPT_RETURNTRANSFER, 1); //om den Ã¤r instÃ¤lld pÃ¥ true, sÃ¥ fÃ¥r man tillbaka dat som en strÃ¤ng
 
-        $data = curl_exec($CURLsession);//Utför CURL sessionen
+        $data = curl_exec($CURLsession);//UtfÃ¶r CURL sessionen
 
-        curl_close($CURLsession);// Stäng sessionen
+        curl_close($CURLsession);// StÃ¤ng sessionen
 
         return $data; // Returnerar den in samlade datan
     }

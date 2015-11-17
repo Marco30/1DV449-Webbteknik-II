@@ -1,6 +1,8 @@
 <?php
 //Marco villegas
 
+namespace view;
+
 require_once('view/DateTimeView.php');
 
 class LayoutView
@@ -15,13 +17,13 @@ class LayoutView
         }
 		else
 		{
-			$dtv = new DateTimeView();
+			$dtv = new \view\DateTimeView();
 
 			echo '
 		<!DOCTYPE html>
 		<html>
 			<head>
-			<title>Login</title>
+			<title>Web Skrapa</title>
 			<meta charset ="utf-8" />
 			</head>
 			<body>

@@ -1,5 +1,7 @@
 <?php
 //Marco villegas
+namespace controller;
+
 require_once('model/CURLrequest.php');
 require_once('model/GetStartPageInfo.php');
 require_once('model/GetCalendarsInfo.php');
@@ -10,13 +12,12 @@ class CrawlerController
 {
 
     private $Crawler_View;
+    private $CURL;
 
-    //public function __construct(CrawlerView $iCrawler_View)// tar int adressen man skrivit in formulären och till delar den till variable
-    public function __construct()// tar int adressen man skrivit in formulären och till delar den till variable
+    public function __construct()
     {
-        //$this->Crawler_View = $iCrawler_View;
-
-        $this->Crawler_View =$CrawlerView = new CrawlerView();
+        $this->CURL = new \model\CURL();
+        $this->Crawler_View =$CrawlerView = new \view\CrawlerView();
     }
 
     public function MyCrawlerController()
@@ -24,20 +25,17 @@ class CrawlerController
         if ($this->Crawler_View->CheckPost())// if satsen körs om amn tryckt på post i formulären
         {
 
-            $CURL = new CURL();
-
             $iURL = $this->Crawler_View->GetUrl();// hämtar adresn man mattat in
 
             //test
             //var_dump(iURL);
 
-
-            $StartPage_C = new GetStartPageInfo($iURL, $CURL);// construct
+            $StartPage_C = new \model\GetStartPageInfo($iURL, $this->CURL);// construct
 
             $StartPage_C->GetLinksFromStartPage();// hämtar länkarna som finns i sidan
 
 
-            $Calendar_C = new GetCalendarsInfo($iURL.$StartPage_C->GetLinkToCalanderPage(), $CURL); // construct tar in URL adres till sidan med alla kalender
+            $Calendar_C = new \model\GetCalendarsInfo($iURL.$StartPage_C->GetLinkToCalanderPage(), $this->CURL); // construct tar in URL adres till sidan med alla kalender
 
             $DayEveryoneAvailable = $Calendar_C->DayEveryoneAvailable();// Kontrollerar vilken daga alla kan
 
@@ -47,7 +45,7 @@ class CrawlerController
              echo "test 77<br />Key: $key; Value: $value<br />\n";
          }*/
 
-            $Movie_C = new GetMovieInfo($iURL.$StartPage_C->GetLinkToMoviePage(), $CURL, $DayEveryoneAvailable);// construct
+            $Movie_C = new \model\GetMovieInfo($iURL.$StartPage_C->GetLinkToMoviePage(), $this->CURL, $DayEveryoneAvailable);// construct
 
             $MovieDataFromSelectedDay = $Movie_C->GetMovieDataFromSelectedDay();// Tar fram all information om filmerna man vill ses
 

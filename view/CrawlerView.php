@@ -1,6 +1,8 @@
 <?php
 //Marco villegas
 
+namespace view;
+
 class CrawlerView
 {
 

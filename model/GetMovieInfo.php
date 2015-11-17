@@ -1,5 +1,6 @@
 <?php
 //Marco villegas
+namespace model;
 
 class GetMovieInfo
 {
@@ -52,11 +53,11 @@ class GetMovieInfo
     private function GetAllMovieDays()// hämtar alla dagar man kan gå på bio
     {
         $AllMovieDays = array();
-        $dom = new DomDocument();
+        $dom = new \DomDocument();
 
         if($dom->loadHTML($this->HTMLdata))
         {
-            $xpath = new DOMXPath($dom);
+            $xpath = new \DOMXPath($dom);
 
             $MovieValues = $xpath->query("//select[@id='day']/option[not(contains(@disabled, 'disabled'))]/@value");// hämtar hemtar valun som varje dag har i val listan
 
@@ -79,11 +80,11 @@ class GetMovieInfo
     private function GetAllMovies()// hämtar alla filmerna
     {
         $AllMovies = array();
-        $dom = new DomDocument();
+        $dom = new \DomDocument();
 
         if($dom->loadHTML($this->HTMLdata))
         {
-            $xpath = new DOMXPath($dom);
+            $xpath = new \DOMXPath($dom);
             $MovieValues = $xpath->query("//select[@id='movie']/option[not(contains(@disabled, 'disabled'))]/@value");// hämtar alla valus från film listan
             $MovieNames = $xpath->query("//select[@id='movie']/option[not(contains(@disabled, 'disabled'))]");// namn på filmerna
 
@@ -144,13 +145,13 @@ class GetMovieInfo
 
         $AllMovieData = array();
 
-        $dom = new DomDocument();
+        $dom = new \DomDocument();
         // test
        //echo "test marco".$html . '<br> <br>';
 
         if($dom->loadHTML($iHTML))
         {
-            $xpath = new DOMXPath($dom);
+            $xpath = new \DOMXPath($dom);
 
             $JasonData = $xpath->query("/html");//använder  expression för att hämtar data
 

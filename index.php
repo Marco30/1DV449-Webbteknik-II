@@ -11,7 +11,7 @@ require_once('view/LayoutView.php');
 require_once('view/CrawlerView.php');
 
 
-$LayoutView = new LayoutView();// skapar ett HTMLView
-$CrawlerController = new CrawlerController();// skapar ett Controller objekt
+$LayoutView = new \view\LayoutView();// skapar ett HTMLView
+$CrawlerController = new \controller\CrawlerController();// skapar ett Controller objekt
 $HTML = $CrawlerController->MyCrawlerController();// kör min MyCrawlerController funktion i Controller klassen
 $LayoutView->showHTML($HTML);// kör min showHTML funktion i klassen LayoutView

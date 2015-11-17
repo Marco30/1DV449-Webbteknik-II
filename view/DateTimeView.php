@@ -1,5 +1,7 @@
 <?php
 //Marco villegas
+namespace view;
+
 class DateTimeView
 {
 
