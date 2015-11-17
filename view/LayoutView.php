@@ -1,7 +1,7 @@
 <?php
 //Marco villegas
-//require_once('view/DateTimeView.php');
-require_once('DateTimeView.php');
+
+require_once('view/DateTimeView.php');
 
 class LayoutView
 {

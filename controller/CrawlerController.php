@@ -1,15 +1,22 @@
 <?php
+//Marco villegas
+require_once('model/CURLrequest.php');
+require_once('model/GetStartPageInfo.php');
+require_once('model/GetCalendarsInfo.php');
+require_once('model/GetMovieInfo.php');
 
 
 class CrawlerController
 {
 
     private $Crawler_View;
-    private $HTML;
 
-    public function __construct(CrawlerView $iCrawler_View)// tar int adressen man skrivit in formulären och till delar den till variable
+    //public function __construct(CrawlerView $iCrawler_View)// tar int adressen man skrivit in formulären och till delar den till variable
+    public function __construct()// tar int adressen man skrivit in formulären och till delar den till variable
     {
-        $this->Crawler_View = $iCrawler_View;
+        //$this->Crawler_View = $iCrawler_View;
+
+        $this->Crawler_View =$CrawlerView = new CrawlerView();
     }
 
     public function MyCrawlerController()
@@ -47,17 +54,13 @@ class CrawlerController
             //test
             //var_dump(MovieDataFromSelectedDay );
 
-            $this->HTML = $this->Crawler_View->GetHTML_TabelOutput($MovieDataFromSelectedDay);//Visar dagen all kan och all filmer som det finns plats till och tiderna dem går på
+            return $this->Crawler_View->GetHTML_TabelOutput($MovieDataFromSelectedDay);//Visar dagen all kan och all filmer som det finns plats till och tiderna dem går på
 
         }
         else
         {
-            $this->HTML = $this->Crawler_View->GetHTML_InputForm();// visar formulären
+            return $this->Crawler_View->GetHTML_InputForm();// visar formulären
         }
     }
 
-    public function getHTML()
-    {
-        return $this->HTML;
-    }
 }
