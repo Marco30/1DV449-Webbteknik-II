@@ -97,10 +97,10 @@ class GetCalendarsInfo
 
     public function DayEveryoneAvailable()
     {
+
         $EveryonesAvailabelDay = array();
-        $Days = array("Friday" => 0, "Saturday" => 0, "Sunday" => 0);
-        $EveryonesAvailabelDayInSV = array();
-        $TranslatDaysSV = array("friday" => "fredag", "saturday" => "lördag","sunday" => "söndag");
+        $Days = array("Monday" => 0, "Tuesday" => 0, "Wednesday" => 0, "Thursday" => 0, "Friday" => 0, "Saturday" => 0, "Sunday" => 0);
+
 
         foreach ($this->PersonalCalendarInfo as $days => $daysValue)
         {
@@ -121,15 +121,18 @@ class GetCalendarsInfo
 
         // avänd för att testa echo 'test<br>' . $EveryonesAvailabelDay[$key1] . '<br>';
 
-        /*foreach ($EveryonesAvailabelDay as $key => $value) {
-            echo "<br />Key: $key; Value: $value<br />\n";
+       /* foreach ($EveryonesAvailabelDay as $key => $value) {
+            echo "test 88"."<br />Key: $key; Value: $value<br />\n";
         }*/
 
+        // översättning
+        $EveryonesAvailabelDayInSV = array();
+        $TranslatDaysSV = array("monday" => "måndag", "tuesday" => "tisdag", "wednesday" => "onsdag", "thursday" => "torsdag","friday" => "fredag", "saturday" => "lördag","sunday" => "söndag");
 
         foreach ($EveryonesAvailabelDay as $enKey => $value)
         {
 
-            foreach ($TranslatDaysSV as $mixKey => $enValue)
+            foreach ($TranslatDaysSV as $mixKey => $enValue)//lopar igenom och hittar engelska dagarna och ändrar dem till svenska
             {
                 if(preg_match("/".$enKey."/i", $mixKey))
                 {
