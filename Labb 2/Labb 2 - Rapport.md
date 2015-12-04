@@ -61,18 +61,18 @@ Den här labben har fåt mig att tänka på så många saker vad gäller min pro
 Jag tror att man bara genom att förstå svagheterna som finns i systemen kan läras sig att skydda sig från dem.  Vad gäller optimering så var det nysa saker blandat med gamla, som jag känner igen från tidigare kurser. Optimeringen har fåt mig att tänka på vad jag har i min applikation och hur jag väljer at förvara och ladda in min kod. Samt tänka på caching vilket är något jag inte tänkt på innan.  Alltid bra att repeteras saker och se saker från andra perspektiv samt läras sig nya saker.    
 
 ##Referenser
-[1]Top 10 2013-A1-Injection - https://www.owasp.org/index.php/Top_10_2013-A1-Injection
-[2]SQL injections - http://php.net/manual/en/security.database.sql-injection.php
-[3]SQL Injection Prevention Cheat Sheet -https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet
-[5]Top 10 2013-Top 10 - https://www.owasp.org/index.php/Top_10_2013-Top_10
-[4]Top 10 2013-A2-Broken Authentication and Session Management -https://www.owasp.org/index.php/Top_10_2013-A2-Broken_Authentication_and_Session_Management
-[6]Top 10 2013-Top 10 - https://www.owasp.org/index.php/Top_10_2013-Top_10
-[7]Top 10 2013-A6-Sensitive Data Exposure - https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure
-[8]Top 10 2013-A3-Cross-Site Scripting (XSS) - https://www.owasp.org/index.php/Top_10_2013-A3-Cross-Site_Scripting_%28XSS%29
-[9]OWASP Periodic Table of Vulnerabilities - Cross-Site Scripting (XSS) -https://www.owasp.org/index.php/OWASP_Periodic_Table_of_Vulnerabilities_-_Cross-Site_Scripting_(XSS)
-[10]Caching Tutorial for Web Authors and Webmasters - https://www.mnot.net/cache_docs/
-[11]Increasing Application Performance with HTTP Cache Headers - https://devcenter.heroku.com/articles/increasing-application-performance-with-http-cache-headers
-[12]Souders, Steve. Chapter 6. High Performance Web Sites. Farnham: O'Reilly, 2007. Print.
-[13]Souders, Steve. Chapter 10. High Performance Web Sites. Farnham: O'Reilly, 2007. Print.
-[14]Steve Souders, High Performance Web Sites: Rule 1: Make Fewer HTTP Requests, O'Reilly, 2007
+* [1]Top 10 2013-A1-Injection - https://www.owasp.org/index.php/Top_10_2013-A1-Injection
+* [2]SQL injections - http://php.net/manual/en/security.database.sql-injection.php
+* [3]SQL Injection Prevention Cheat Sheet -https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet
+* [5]Top 10 2013-Top 10 - https://www.owasp.org/index.php/Top_10_2013-Top_10
+* [4]Top 10 2013-A2-Broken Authentication and Session Management -https://www.owasp.org/index.php/Top_10_2013-A2-Broken_Authentication_and_Session_Management
+* [6]Top 10 2013-Top 10 - https://www.owasp.org/index.php/Top_10_2013-Top_10
+* [7]Top 10 2013-A6-Sensitive Data Exposure - https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure
+* [8]Top 10 2013-A3-Cross-Site Scripting (XSS) - https://www.owasp.org/index.php/Top_10_2013-A3-Cross-Site_Scripting_%28XSS%29
+* [9]OWASP Periodic Table of Vulnerabilities - Cross-Site Scripting (XSS) -https://www.owasp.org/index.php/OWASP_Periodic_Table_of_Vulnerabilities_-_Cross-Site_Scripting_(XSS)
+* [10]Caching Tutorial for Web Authors and Webmasters - https://www.mnot.net/cache_docs/
+* [11]Increasing Application Performance with HTTP Cache Headers - * https://devcenter.heroku.com/articles/increasing-application-performance-with-http-cache-headers
+* [12]Souders, Steve. Chapter 6. High Performance Web Sites. Farnham: O'Reilly, 2007. Print.
+* [13]Souders, Steve. Chapter 10. High Performance Web Sites. Farnham: O'Reilly, 2007. Print.
+* [14]Steve Souders, High Performance Web Sites: Rule 1: Make Fewer HTTP Requests, O'Reilly, 2007
 
