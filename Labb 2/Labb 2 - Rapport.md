@@ -35,7 +35,7 @@ Som saker är just nu så kommer man åt databasen genom att ange dess sökväg.
 
 [8]Webbapplikationer tar i mot opålitliga data och skickar det till webbläsaren utan ordentlig validering. Det kan låta en elak användare köra skript i offrets webbläsare som kan kapa användarsessioner, vanställa webbplatser, eller omdirigera användaren till skadliga webbplatser.
 
-Det finns ingen Validering på meddelades text rutan när man är inloggad, man kan skriva in javascript /HTML taggar men också SQL-kod. Har testade <!--<a href='#' onclick='alert("Hej mitt namn är marco")'>Hej</a>-->
+Det finns ingen Validering på meddelades text rutan när man är inloggad, man kan skriva in javascript /HTML taggar men också SQL-kod. Har testade <'a href='#' onclick='alert("Hej mitt namn är marco")'>Hej</a'>
 
 [9]Se till att endast tillåta en viss längd av tecken och att tecken som ingår i skript syntaxer tas bort, detta kommer att göra det omöjligt för webbapplikationen att se det som kod
 
