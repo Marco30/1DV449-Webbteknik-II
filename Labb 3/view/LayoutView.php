@@ -21,7 +21,7 @@ class LayoutView
 		<!DOCTYPE html>
 		<html>
 			<head>
-				<title>Trafik-siten!</title>
+				<title>Marco - Labb 3</title>
 				<meta http-equiv='content-type' content='text/html; charset=utf-8'>
 				<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
 				<link rel='stylesheet' type='text/css' href='css/styles.css'>
@@ -33,8 +33,8 @@ class LayoutView
 				</div>
 				<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
                 <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
-				<script src='js/TrafficInfoData.js'></script>
-				<script src='js/TrafficInfoBoard.js'></script>
+				<script src='js/TrafficData.js'></script>
+				<script src='js/TrafficMap.js'></script>
 
                 <script type='text/javascript'src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBEDlMMz5VeW228J7_WwMDRlIn3ZektHPY'>
 				</script>
