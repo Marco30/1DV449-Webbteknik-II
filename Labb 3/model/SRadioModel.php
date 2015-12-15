@@ -15,7 +15,7 @@ class SRadioModel
 		$this->maxAmountOfResults = 100;// Max antal information från apien
 		$this->url = "http://api.sr.se/api/v2/traffic/messages?format=json&pagination=false";// apien vi hämtar från
 		$this->filename = "jsonFile.txt";// fil att spara infomraiton i
-		$this->cacheTimeInMinutes = 1;// hur länge vi chachar inan vi kontaktar sidan igen
+		$this->cacheTimeInMinutes = 2;// hur länge vi chachar inan vi kontaktar sidan igen
 	}
 
 	private function curl_get($url)
