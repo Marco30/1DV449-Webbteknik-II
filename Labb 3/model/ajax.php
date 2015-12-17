@@ -2,9 +2,9 @@
 
 require_once("SRadioModel.php");
 
-$srApiHandler = new SRadioModel();
+$SR = new SRadioModel();
 
 if($_GET['action'] == "getLatest")
 {
-	echo $srApiHandler->NewCallOrUseCache();
+	echo $SR->NewCallOrUseCache();
 }
