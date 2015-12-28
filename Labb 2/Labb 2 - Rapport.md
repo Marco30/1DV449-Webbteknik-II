@@ -39,6 +39,13 @@ Det finns ingen Validering på meddelades text rutan när man är inloggad, man 
 
 [9]Se till att endast tillåta en viss längd av tecken och att tecken som ingår i skript syntaxer tas bort, detta kommer att göra det omöjligt för webbapplikationen att se det som kod
 
+####CSRF
+
+[15]En CSRF attack tvingar ett inloggade offers webbläsare att skicka en HTTP-begäran, som in håller offrets sessions cookie och autentiseringsinformation. Detta kan göra det möjligt för angripare att ta över offrets identitet och befogenheter i systemet genom att angriparen webbläsare utger sig för att vara offret.
+
+Ett exempel på hur det kan gå till är att en elak användare postar en länk på sidan och en intet ont anande användare trycker på länken som tar den till en webbplats som tar i mott data från offret.
+
+[15]CSRF attacker kan man förhindra genom att unika token generas varje sidhämtning och Skicka i varje HTTP begäran. Inkludera den i ett dolt fält i kroppen, genom att göra det så förhindrar man sådana här attacker, då man inte kan få tag på validation token så lätt.
 
 
 ###Optimering
@@ -51,9 +58,27 @@ Det finns ingen Validering på meddelades text rutan när man är inloggad, man 
 Som det är nu så är cachning avstängd, webbsidan måste ladda hem alla filer varje gång man besöker sidan. Det gör så att man gör onödigt många HTTP-begäran och tar när prestandan. för att öka prestandan så bör man startat caching och ange när innehåll går u /hur länge innehållet är färskt.
 
 ####Strukturerar upp Kod
- [12]Javasscript borde sättas längs ner vid slut body HTML tagen som det är just nu så är Skripten placeras i sidans sidhuvud. Om script är stort så kan det ta tid att laddas in och orsakar onödig laddningstid. Det kommer i sin tur att uppfattas av användaren som om sidan är seg. [13]Jobbar man med ett projekt som innehåller mycket javascript-kod, kan det vara resurseffektivt att komprimera och minifiera sina javascript. 
+ [12, S. 45]Javasscript borde sättas längs ner vid slut body HTML tagen som det är just nu så är Skripten placeras i sidans sidhuvud. Om script är stort så kan det ta tid att laddas in och orsakar onödig laddningstid. Det kommer i sin tur att uppfattas av användaren som om sidan är seg. [13, S.73]Jobbar man med ett projekt som innehåller mycket javascript-kod, kan det vara resurseffektivt att komprimera och minifiera sina javascript. 
 
-Filernas storlek kan minskas avsevärt vilket förstås leder till en bättre och snabbare respons från webbserverns sida. Css ska däremot vara i sidhuvudet så att det ladas in så fort som möjligt samt att man ska undvika att ha in line CSS i HTML kod som det är nu. [14]minska onödig HTTP requests genom att undvika att försöker hämta en fil som inte finns eller inte kommer användas för det segar ner webbsidan, bootstrap.css ladas in men används inte av webbsidan. 
+Filernas storlek kan minskas avsevärt vilket förstås leder till en bättre och snabbare respons från webbserverns sida. Css ska däremot vara i sidhuvudet så att det ladas in så fort som möjligt samt att man ska undvika att ha in line CSS i HTML kod som det är nu.
+[14, S. 10] minska onödig HTTP requests genom att undvika att försöker hämta en fil som inte finns eller inte kommer användas för det segar ner webbsidan, bootstrap.css ladas in men används inte av webbsidan. 
+
+####Minifiering av statiska resurser
+[13, S. 69]Minifiering i Javascript är en process för att ta bort alla tecken som inte är nödvändiga från Javascript källkod. Alla data som inte är nödvändig för funktionen av Javascript tas bort från källkoden och där med blir Javascript minimerad. Det som tas bort är kommentarer, alla blanktecken som mellanslag och ny rad. Även om dessa tecken tas bort från källkod så är funktionaliteten i koden oförändrad, den kommer beter sig precis densamma även efter att den gått igenom minification processen. 
+
+Man Minifierar Javascript för att påskynda nedladdning eller överföring av Javascript-kod från servern. Minification minskar mängden data som måste laddas ned och gör att sidan laddas snabbare. Minifiering är i huvudsak en prestandaförbättringoch för att ladda webbplatser snabbare.
+
+####Komprimering av statiska resurser
+[16, S. 30] Komprimering innebär att man använder någon metod för att minska storleken på en fil. Komprimering gör att din webb plats laddar snabbare för din webbplats användare. Komprimering av HTML och CSS-filer med gzip sparar vanligtvis omkring 50-70 procent av filstorleken. Detta innebär att det tar mindre tid att ladda dina webbplatser. Komprimering är ett enkelt och effektivt sätt att spara bandbredd och snabba upp den ägna webbplatsen
+
+####CDN
+[17, S. 19]Content delivery network (CDN) är en samling av webbservrar fördelade överflera platser för att leverera innehåll till användare mer effektivt. Det görs genom att CDN håller kopior av dina filer vid olika server punkter längs ett globalt nätverk för att säkerställa möjlig leverans till användaren av din webbplats på olika platser i världen. Det man inte vill när man har en webbplats är för användarna att behöva vänta långa perioder medan dina bilder eller videoklipp hämtas. Genom att cacha webbplatsens innehåll som bilderna, CSS / JS-filer och andra strukturella komponenter i så många webb punkter som möjligt undviker vi det. 
+
+De flesta CDN används för att förvarar filer som bilder, videor, ljudklipp, CSS-filer och JavaScript. Du hittar oftast de vanligaste JavaScript-bibliotek, HTML5, CSS stil, typsnitt och andra tillgångar på offentliga och privata CDN system. 
+
+[17, S. 20]CDN förbättra den globala tillgången och minska bandbredd, det största problemet de behandlar är latency: den tid det tar för värdservern för att ta emot, bearbeta och leverera på en begäran om en sida resurs bilder, CSS-filer, m.m. 
+[12, S. 46] Latency beror till stor del på hur långt bort användaren från servern och det förvärras av antalet resurser en webbsida innehåller.
+
 
 ####Reflektioner
 Tycker att den här labben varit en väldig lärorik erfarenhet att läs om det svagheter som fins är en sak. Mena att testa och utforska de svagheter som finns är en helt annan. 
@@ -75,4 +100,7 @@ Jag tror att man bara genom att förstå svagheterna som finns i systemen kan l�
 * [12]Souders, Steve. Chapter 6. High Performance Web Sites. Farnham: O'Reilly, 2007. Print.
 * [13]Souders, Steve. Chapter 10. High Performance Web Sites. Farnham: O'Reilly, 2007. Print.
 * [14]Steve Souders, High Performance Web Sites: Rule 1: Make Fewer HTTP Requests, O'Reilly, 2007
+* [15] Top 10 2013-Top 10 - https://www.owasp.org/index.php/Top_10_2013-A8-Cross-Site_Request_Forgery_(CSRF)
+* [16]Souders, Steve. Chapter 4. High Performance Web Sites. Farnham: O'Reilly, 2007. Print.
+* [17]Souders, Steve. Chapter 2. High Performance Web Sites. Farnham: O'Reilly, 2007. Print.
 
