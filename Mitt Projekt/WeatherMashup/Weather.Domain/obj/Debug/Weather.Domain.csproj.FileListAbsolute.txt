@@ -1,4 +1,0 @@
-C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\bin\Debug\Weather.Domain.dll
-C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\bin\Debug\Weather.Domain.pdb
-C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\obj\Debug\Weather.Domain.dll
-C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\obj\Debug\Weather.Domain.pdb
