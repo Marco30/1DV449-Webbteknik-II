@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Weather.Domain" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Forecasts" Relationship="Self.FK_Forecast_City" FromRole="City" ToRole="Forecast" />
+  </EntityType>
+  <EntityType Name="Forecast">
+    <Key>
+      <PropertyRef Name="ForecastID" />
+    </Key>
+    <Property Name="ForecastID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityID" Type="Int32" Nullable="false" />
+    <Property Name="Period" Type="Int32" Nullable="false" />
+    <Property Name="Temperature" Type="Int32" Nullable="false" />
+    <Property Name="Symbol" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NextUpdate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="City" Relationship="Self.FK_Forecast_City" FromRole="Forecast" ToRole="City" />
+  </EntityType>
+  <Association Name="FK_Forecast_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Forecast" Type="Self.Forecast" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="Forecast">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Marco_MashupEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cities" EntityType="Self.City" />
+    <EntitySet Name="Forecasts" EntityType="Self.Forecast" />
+    <AssociationSet Name="FK_Forecast_City" Association="Self.FK_Forecast_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Forecast" EntitySet="Forecasts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

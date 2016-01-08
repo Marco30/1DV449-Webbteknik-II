@@ -1,0 +1,12 @@
+C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\bin\Release\Weather.Domain.dll.config
+C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\bin\Release\Weather.Domain.dll
+C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\bin\Release\Weather.Domain.pdb
+C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\bin\Release\EntityFramework.dll
+C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\bin\Release\Newtonsoft.Json.dll
+C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\bin\Release\EntityFramework.xml
+C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\bin\Release\Newtonsoft.Json.xml
+C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\obj\Release\Weather.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\obj\Release\Weather.Domain.dll
+C:\Users\Marco\Desktop\MVC projekt\WeatherMashup\Weather.Domain\obj\Release\Weather.Domain.pdb
