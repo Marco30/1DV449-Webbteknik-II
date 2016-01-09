@@ -1,0 +1,33 @@
+﻿@model Weather.MVC.ViewModel.WeatherViewModel
+
+@{
+    ViewBag.Title = "Väder Projekt";
+}
+
+<br />
+<br />
+
+@Html.ActionLink("Tillbaka - Sök efter ny stad!", "Index")
+
+<h2>Vädret i @Model.City.Name för de 5 kommande dagarna</h2>
+
+<br />
+
+@if (Model != null && Model.HasForcast)
+{
+    foreach (var item in @Model.Forecasts)
+    {
+        var day = Model.GetDayOfTheWeek(item.LastUpdate, item.Period);
+        
+        if (day != null)
+        {
+            <h3>@day</h3>
+        }
+  
+        <p>@Model.TimePeriod(item.LastUpdate, item.NextUpdate)
+        <span class="weatherSymbol"><img src="http://api.yr.no/weatherapi/weathericon/1.1/?symbol=@item.Symbol;content_type=image/png" /></span>
+        <span class="temp">@item.Temperature &deg;C</span>
+    </p>
+    
+    }
+}

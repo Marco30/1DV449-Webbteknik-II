@@ -40,6 +40,45 @@ namespace Weather.Domain
             return city;
         }
 
-  
+        public override City FindCity(int id)
+        {
+            return _repository.FindCityById(id);
+        }
+
+        public override IEnumerable<Forecast> GetForecast(City city)
+        {
+            var forecast = _repository.FindForecast(city.CityID);
+
+            if (forecast.Count() == 0)
+            {
+                forecast = _yrnoAPIservice.GetForecast(city);
+                _repository.AddForecast(forecast);
+                _repository.Save();
+            }
+            else
+            {
+                foreach (Forecast item in forecast)
+                {
+                    if (item.NextUpdate < DateTime.Now)
+                    {
+                        _repository.DeleteForecast(forecast);
+                        _repository.Save();
+
+                        forecast = _yrnoAPIservice.GetForecast(city);
+
+                        _repository.AddForecast(forecast);
+                        _repository.Save();
+                        break;
+                    }
+                }
+            }
+            return forecast;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _repository.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }

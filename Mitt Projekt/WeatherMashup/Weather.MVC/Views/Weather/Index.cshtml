@@ -1,0 +1,49 @@
+﻿@model Weather.MVC.ViewModel.WeatherViewModel
+
+@{
+    ViewBag.Title = "Väder Projekt";
+}
+
+<h1>-Min Vädersida-</h1>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, String.Empty, new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CityName, htmlAttributes: new { @class = "control-label col-md-1" })
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CityName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CityName, String.Empty, new { @class = "text-danger" })
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-10">
+                <input type="submit" value="Sök" class="btn btn-primary btn-sm" />
+            </div>
+        </div>
+
+    </div>
+
+}
+
+<p class="error">@TempData["noCities"]</p>
+
+
+@if (Model != null && Model.HasCity)
+{
+    <h3>Search result</h3>
+    foreach (var location in Model.Citys)
+    {
+    <li>
+        @Html.ActionLink((string)location.Name, "Weather", new { city = @location.Name, region = @location.Region, country = @location.Country, id = @location.CityID }), @location.Region, @location.Country
+    </li>
+    }
+}
