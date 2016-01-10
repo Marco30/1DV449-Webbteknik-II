@@ -13,6 +13,8 @@
 
 <br />
 
+<p class="error">@TempData["noForecast"]</p>
+
 @if (Model != null && Model.HasForcast)
 {
     foreach (var item in @Model.Forecasts)

@@ -13,6 +13,10 @@ namespace Weather.Domain
         public abstract City FindCity(int id);
         public abstract IEnumerable<Forecast> GetForecast(City city);
 
+        public abstract bool GResponseTest();
+
+        public abstract bool YResponseTest();
+
         protected virtual void Dispose(bool disposing)
         {
         }

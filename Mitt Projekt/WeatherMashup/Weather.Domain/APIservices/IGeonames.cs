@@ -9,5 +9,7 @@ namespace Weather.Domain.APIservices
     public interface IGeonames
     {
         IEnumerable<City> GetCity(string cityName);
+
+        bool GeonamesAPIResponseTest();
     }
 }

@@ -16,7 +16,8 @@ namespace Weather.Domain
         }
         public City(JToken cityToken)
         {
-            Name = cityToken.Value<string>("name");
+            string NLength = cityToken.Value<string>("name");
+            Name = (NLength.Length > 30) ? NLength.Substring(0, 25) + "." : NLength;
             Region = cityToken.Value<string>("adminName1");
             Country = cityToken.Value<string>("countryName");
         }

@@ -27,14 +27,32 @@ namespace Weather.Domain
 
         public override IEnumerable<City> GetCity(string cityName)
         {
-            var city = _repository.FindCityByName(cityName);
+            //
+            IEnumerable<City> city;
+            //
 
-            if (city.Count() == 0)
+            if (_geonameAPIservice.GeonamesAPIResponseTest() == false)
             {
-                city = _geonameAPIservice.GetCity(cityName);
+                //
 
-                _repository.AddCity(city);
-                _repository.Save();
+               city = _repository.FindCityByName(cityName);
+
+                //
+
+            }
+
+            else
+            {
+              
+               city = _repository.FindCityByName(cityName);
+
+                if (city.Count() == 0)
+                {
+                    city = _geonameAPIservice.GetCity(cityName);
+
+                    _repository.AddCity(city);
+                    _repository.Save();
+                }
             }
 
             return city;
@@ -47,33 +65,80 @@ namespace Weather.Domain
 
         public override IEnumerable<Forecast> GetForecast(City city)
         {
-            var forecast = _repository.FindForecast(city.CityID);
 
-            if (forecast.Count() == 0)
+            IEnumerable<Forecast> forecast;
+            
+            //
+            if (_yrnoAPIservice.YrNoAPIResponseTest() == false)
             {
-                forecast = _yrnoAPIservice.GetForecast(city);
-                _repository.AddForecast(forecast);
-                _repository.Save();
+            //
+                forecast = _repository.FindForecast(city.CityID);
+
+            //
             }
             else
             {
-                foreach (Forecast item in forecast)
+               
+                forecast = _repository.FindForecast(city.CityID);
+
+                if (forecast.Count() == 0)
                 {
-                    if (item.NextUpdate < DateTime.Now)
+                    forecast = _yrnoAPIservice.GetForecast(city);
+                    _repository.AddForecast(forecast);
+                    _repository.Save();
+                }
+                else
+                {
+                    foreach (Forecast item in forecast)
                     {
-                        _repository.DeleteForecast(forecast);
-                        _repository.Save();
+                        if (item.NextUpdate < DateTime.Now)
+                        {
+                            _repository.DeleteForecast(forecast);
+                            _repository.Save();
 
-                        forecast = _yrnoAPIservice.GetForecast(city);
+                            forecast = _yrnoAPIservice.GetForecast(city);
 
-                        _repository.AddForecast(forecast);
-                        _repository.Save();
-                        break;
+                            _repository.AddForecast(forecast);
+                            _repository.Save();
+                            break;
+                        }
                     }
                 }
+
             }
+            //
             return forecast;
         }
+
+        //test 
+        public override bool GResponseTest()
+        {
+
+            if (_geonameAPIservice.GeonamesAPIResponseTest() == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //
+        public override bool YResponseTest()
+        {
+
+            if (_yrnoAPIservice.YrNoAPIResponseTest() == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //
 
         protected override void Dispose(bool disposing)
         {

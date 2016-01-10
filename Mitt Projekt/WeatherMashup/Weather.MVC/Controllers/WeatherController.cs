@@ -44,6 +44,10 @@ namespace Weather.MVC.Controllers
                     {
                         TempData["noCities"] = "Inga städer hittades med namnet " + model.CityName + "!";
                     }
+                    if (_service.GResponseTest() == false)
+                    {
+                        TempData["noCities"] = "API Geonames tjänsten ligger för tillfället nere, Sökning har skett i vår databas, Om din ort inte finns i vår databas kommer det inte vissas";
+                    }
                 }
             }
             catch (Exception ex)
@@ -66,7 +70,18 @@ namespace Weather.MVC.Controllers
                     return View("Error");
                 }
 
+                //
+                if (_service.YResponseTest() == false)
+                {
+                    TempData["noForecast"] = "YrNo Geonames tjänsten ligger för tillfället nere, Sökning har skett i vår databas, Om din ort inte finns i vår databas kommer det inte vissas";
+                   
+                    model.Forecasts = _service.GetForecast(model.City);
+
+                    return View(model);
+                }
+                //
                 model.Forecasts = _service.GetForecast(model.City);
+
             }
             catch (Exception)
             {

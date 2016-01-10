@@ -11,5 +11,8 @@ namespace Weather.Domain
         IEnumerable<City> GetCity(string cityName);
         City FindCity(int id);
         IEnumerable<Forecast> GetForecast(City city);
+
+        bool GResponseTest();
+        bool YResponseTest();
     }
 }

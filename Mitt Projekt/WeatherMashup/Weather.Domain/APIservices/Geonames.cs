@@ -30,5 +30,33 @@ namespace Weather.Domain.APIservices
 
             return JArray.Parse(contentRawJson).Select(city => new City(city)).ToList();
         }
+        
+        //
+        public bool GeonamesAPIResponseTest()
+        {
+            try
+            {
+                string JsonTest;
+
+                string requestUriString = "http://api.geonames.org/searchJSON?name=Stockholm&style=full&maxRows=50&username=marco3030";
+                var request = (HttpWebRequest)WebRequest.Create(requestUriString);
+
+                using (var response = request.GetResponse())
+                {
+                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    {
+                        JsonTest = reader.ReadToEnd();
+                    }
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        //
+
     }
 }

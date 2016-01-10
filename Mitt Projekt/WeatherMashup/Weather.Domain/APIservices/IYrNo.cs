@@ -10,5 +10,7 @@ namespace Weather.Domain.APIservices
     {
         IEnumerable<Forecast> GetForecast(City city);
         DateTime FixesTheDate(string date);
+
+        bool YrNoAPIResponseTest();
     }
 }

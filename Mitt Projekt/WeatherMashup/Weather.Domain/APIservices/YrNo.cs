@@ -47,5 +47,22 @@ namespace Weather.Domain.APIservices
             DateTime stringToDateTime = Convert.ToDateTime(correct);
             return stringToDateTime;
         }
+
+        public bool YrNoAPIResponseTest()
+        {
+            try
+            {
+                string APITest = "http://www.yr.no/sted/Sverige/stockholm/huddinge/forecast.xml";
+                XDocument xDoc = XDocument.Load(APITest);
+
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
     }
 }
