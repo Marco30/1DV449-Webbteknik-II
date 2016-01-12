@@ -1,0 +1,17 @@
+﻿CACHE MANIFEST 
+# version 17
+
+CACHE:
+Content/bootstrap.min.css
+Content/bootstrap.css
+Content/Site.css
+IndexOffline.html
+Scripts/respond.min.js
+Scripts/offline.js
+Scripts/online.js
+
+FALLBACK: 
+/IndexOffline.html
+
+NETWORK: 
+*

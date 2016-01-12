@@ -32,7 +32,7 @@ namespace Weather.MVC.Controllers
 
         // Post: City
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Index([Bind(Include = "CityName")] WeatherViewModel model)
         {
             try
