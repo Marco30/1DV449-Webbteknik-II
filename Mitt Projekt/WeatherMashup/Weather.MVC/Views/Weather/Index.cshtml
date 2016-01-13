@@ -35,14 +35,19 @@
 
 <p class="error">@TempData["noCities"]</p>
 
+<ol class="rounded-list">
 
-@if (Model != null && Model.HasCity)
-{
-    <h3>Search result</h3>
-    foreach (var location in Model.Citys)
+    @if (Model != null && Model.HasCity)
     {
-    <li>
-        @Html.ActionLink((string)location.Name, "Weather", new { city = @location.Name, region = @location.Region, country = @location.Country, id = @location.CityID }), @location.Region, @location.Country
-    </li>
+        <h3>Search result</h3>
+
+        foreach (var location in Model.Citys)
+        {
+            <li>
+                @Html.ActionLink((string)location.Name, "Weather", new { city = @location.Name, region = @location.Region, country = @location.Country, id = @location.CityID })
+                <div class="land"> @location.Region, @location.Country</div>
+            </li>
+        }
     }
-}
+    
+</ol>

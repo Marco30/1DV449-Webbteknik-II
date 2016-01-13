@@ -15,21 +15,31 @@
 
 <p class="error">@TempData["noForecast"]</p>
 
-@if (Model != null && Model.HasForcast)
-{
-    foreach (var item in @Model.Forecasts)
+<ol class="weatherlist">
+
+    @if (Model != null && Model.HasForcast)
     {
-        var day = Model.GetDayOfTheWeek(item.LastUpdate, item.Period);
-        
-        if (day != null)
+        foreach (var item in @Model.Forecasts)
         {
-            <h3>@day</h3>
+            var day = Model.GetDayOfTheWeek(item.LastUpdate, item.Period);
+
+            if (day != null)
+            {
+                <h3>@day</h3>
+             }
+
+            <li>
+                <p>
+                    <span class="temp">@item.Temperature &deg;C</span>
+
+                    <span class="weatherSymbol"><img src="http://api.yr.no/weatherapi/weathericon/1.1/?symbol=@item.Symbol;content_type=image/png" /></span>
+                    
+                    @Model.TimePeriod(item.LastUpdate, item.NextUpdate)
+                </p>
+
+            </li>
+
         }
-  
-        <p>@Model.TimePeriod(item.LastUpdate, item.NextUpdate)
-        <span class="weatherSymbol"><img src="http://api.yr.no/weatherapi/weathericon/1.1/?symbol=@item.Symbol;content_type=image/png" /></span>
-        <span class="temp">@item.Temperature &deg;C</span>
-    </p>
-    
     }
-}
+
+</ol>
