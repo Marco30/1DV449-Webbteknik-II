@@ -7,39 +7,43 @@
 <br />
 <br />
 
-@Html.ActionLink("Tillbaka - Sök efter ny stad!", "Index")
+<div class="M2">
 
-<h2>Vädret i @Model.City.Name för de 5 kommande dagarna</h2>
+    @Html.ActionLink("Tillbaka - Sök efter ny stad!", "Index")
 
-<br />
+    <h2>Vädret i @Model.City.Name för de 5 kommande dagarna</h2>
 
-<p class="error">@TempData["noForecast"]</p>
+</div>
 
-<ol class="weatherlist">
+    <br />
 
-    @if (Model != null && Model.HasForcast)
-    {
-        foreach (var item in @Model.Forecasts)
+    <p class="error">@TempData["noForecast"]</p>
+
+    <ol class="weatherlist">
+
+        @if (Model != null && Model.HasForcast)
         {
-            var day = Model.GetDayOfTheWeek(item.LastUpdate, item.Period);
-
-            if (day != null)
+            foreach (var item in @Model.Forecasts)
             {
-                <h3>@day</h3>
-             }
+                var day = Model.GetDayOfTheWeek(item.LastUpdate, item.Period);
 
-            <li>
-                <p>
-                    <span class="temp">@item.Temperature &deg;C</span>
+                if (day != null)
+                {
+                    <h3>@day</h3>
+                }
 
-                    <span class="weatherSymbol"><img src="http://api.yr.no/weatherapi/weathericon/1.1/?symbol=@item.Symbol;content_type=image/png" /></span>
-                    
-                    @Model.TimePeriod(item.LastUpdate, item.NextUpdate)
-                </p>
+                <li>
+                    <p>
+                        <span class="temp">@item.Temperature &deg;C</span>
 
-            </li>
+                        <span class="weatherSymbol"><img src="http://api.yr.no/weatherapi/weathericon/1.1/?symbol=@item.Symbol;content_type=image/png" /></span>
 
+                        @Model.TimePeriod(item.LastUpdate, item.NextUpdate)
+                    </p>
+
+                </li>
+
+            }
         }
-    }
 
-</ol>
+    </ol>

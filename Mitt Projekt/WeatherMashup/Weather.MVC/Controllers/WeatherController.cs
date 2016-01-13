@@ -24,15 +24,15 @@ namespace Weather.MVC.Controllers
             _service = service;
         }
 
-        // Get: City
+      
         public ActionResult Index()
         {
             return View();
         }
 
-        // Post: City
+      
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult Index([Bind(Include = "CityName")] WeatherViewModel model)
         {
             try
@@ -46,7 +46,7 @@ namespace Weather.MVC.Controllers
                     }
                     if (_service.GResponseTest() == false)
                     {
-                        TempData["noCities"] = "API Geonames tjänsten ligger för tillfället nere, Sökning har skett i vår databas, Om din ort inte finns i vår databas kommer det inte vissas";
+                        TempData["noCities"] = "API Geonames tjänsten ligger för tillfället nere, Sökning har skett i vår databas, Om sökningen inte finns i vår databas så visas inget";
                     }
                 }
             }
@@ -58,7 +58,6 @@ namespace Weather.MVC.Controllers
             return View(model);
         }
 
-        // Get: Weather
         public ActionResult Weather(int id, WeatherViewModel model)
         {
             try
@@ -73,7 +72,7 @@ namespace Weather.MVC.Controllers
                 //
                 if (_service.YResponseTest() == false)
                 {
-                    TempData["noForecast"] = "YrNo Geonames tjänsten ligger för tillfället nere, Sökning har skett i vår databas, Om din ort inte finns i vår databas kommer det inte vissas";
+                    TempData["noForecast"] = "YrNo Geonames tjänsten ligger för tillfället nere, Sökning har skett i vår databas, Om sökningen inte finns i vår databas så visas ingets";
                    
                     model.Forecasts = _service.GetForecast(model.City);
 

@@ -126,6 +126,7 @@
     <Compile Include="ViewModel\WeatherViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="5C.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -137,7 +138,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="manifest.appcache" />
-    <None Include="Properties\PublishProfiles\J.pubxml" />
+    <None Include="Properties\PublishProfiles\Marco.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

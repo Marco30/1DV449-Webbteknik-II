@@ -13,6 +13,12 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="Titel">
+            <h1>-Min Vädersida-</h1>
+        </div>
+
+
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -24,11 +30,16 @@
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Marco villegas</p>
-        </footer>
+        <div class="BContent">
+
+            @RenderBody()
+        
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Marco villegas</p>
+            </footer>
+
+        </div>
+    
     </div>
 
     @Scripts.Render("~/bundles/jquery")

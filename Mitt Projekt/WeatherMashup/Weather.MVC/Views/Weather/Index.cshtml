@@ -4,11 +4,12 @@
     ViewBag.Title = "Väder Projekt";
 }
 
-<h1>-Min Vädersida-</h1>
+
 <br />
 @using (Html.BeginForm())
 {
-
+     @Html.AntiForgeryToken()
+    
     <div class="form-horizontal">
         @Html.ValidationSummary(true, String.Empty, new { @class = "text-danger" })
 
@@ -25,7 +26,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-1 col-md-10">
-                <input type="submit" value="Sök" class="btn btn-primary btn-sm" />
+                <input type="submit" value="Sök" class="button" />
             </div>
         </div>
 
@@ -39,7 +40,7 @@
 
     @if (Model != null && Model.HasCity)
     {
-        <h3>Search result</h3>
+        <h3>Resultatet av din sökning</h3>
 
         foreach (var location in Model.Citys)
         {
@@ -49,5 +50,4 @@
             </li>
         }
     }
-    
 </ol>

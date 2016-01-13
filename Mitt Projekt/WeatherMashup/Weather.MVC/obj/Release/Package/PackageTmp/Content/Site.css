@@ -1,7 +1,47 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+   background-image: url("http://vhost9.lnu.se:20081/1dv409/mv222fp/5C.png");
+background-position: center center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+background-color: #464646;
 }
+
+.Titel h1
+{
+position: relative;
+display: block;
+border-radius: 0.3em;
+transition: all 0.3s ease-out 0s;
+color: #E8E6E6;
+text-decoration: none;
+padding: 3px 8px;
+margin: 12px 0px 10px 490px;
+font-weight: bold;
+}
+
+footer
+{
+position: relative;
+display: block;
+border-radius: 0.3em;
+transition: all 0.3s ease-out 0s;
+color: #E8E6E6;
+text-decoration: none;
+font-weight: bold;
+background-color: #101011;
+font-size: 17px;
+padding: 3px 8px;
+width: 953px;
+}
+
+footer p
+{
+margin: 12px 0px 10px 69px;
+}
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -25,6 +65,10 @@ ol {
     padding: 0;
     margin-bottom: 4em;
     text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    background-color: #FFF;
+padding: 2px 48px 1px 55px;
+margin: -8px 188px 14px 0px;
+border-radius: 1.3em;
 }
 
 ol ol {
@@ -84,7 +128,6 @@ ol ol {
 
 /*Index lista slut*/
 
-/*weatherlist*/
 .weatherlist {
      font-weight: bold;
 }
@@ -123,13 +166,13 @@ ol ol {
     text-decoration: none;
     padding: 3px 8px;
     /* padding-bottom: 8px;*/
+    border-radius: 0.3em;
 }
 
 .weatherlist p
 {
   position: relative;
     display: block;
-
     background: #ddd;
     color: #444;
     text-decoration: none;
@@ -139,43 +182,22 @@ ol ol {
     text-decoration: none;
     padding: 3px 8px;
     padding: -17px 31px -52px 58px;
-     /*margin-top: 10px; */
-    margin: 10px 2px 4px -5px;
-}
-
-.weatherlist p
-{
-  position: relative;
-    display: block;
-
-    background: #ddd;
-    color: #444;
-    text-decoration: none;
-    border-radius: .3em;
-    transition: all .3s ease-out;
-    color: #666666;
-    text-decoration: none;
-    padding: 3px 8px;
-    padding: -17px 31px -52px 58px;
-     /*margin-top: 10px; */
-    margin: 10px 2px 4px -5px;
+    /* margin-top: 10px; */
+    margin: 10px 2px 4px -17px;
 }
 
 .weatherSymbol
 {
-    position: relative;
-    /* display: block; */
-    /* background: #ddd; */
+position: relative;
     color: #444;
     text-decoration: none;
     border-radius: .3em;
     transition: all .3s ease-out;
-    color: #666666;
+    color: #666;
     text-decoration: none;
     padding: 3px 8px;
     float: left;
-    margin: -35px -93px 0px 37px;
-    /* padding: 4px -12px 19px 10px; */
+    margin: -35px -109px 0 49px;
 }
 
 .temp
@@ -195,4 +217,160 @@ ol ol {
     padding: 4px -12px 19px 10px;
 }
 
-/*weatherlist slut*/
+
+#index
+{
+ position: relative;
+display: block;
+border-radius: 0.3em;
+transition: all 0.3s ease-out 0s;
+color: #666;
+text-decoration: none;
+padding: 3px 8px;
+margin: 30px 0px 6px 91px;
+font-weight: bold;
+}
+
+
+
+.button {
+ color: #FFF;
+background-color: rgb(104, 185, 210);
+border-color: #46B8DA;
+font-size: 20px;
+font-family: Helvetica,Arial,sans-serif;
+text-decoration: none;
+vertical-align: middle;
+    border-radius: 6px;
+box-shadow: 0px 1px 0px #000;
+text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.4);
+padding: 0px 30px;
+   }
+.button:hover 
+{
+ color: #FFF;
+background-color: #31B0D5;
+border-color: #269ABC;
+
+
+   }
+.button:active 
+{
+  background-color: #31B0D5;
+border-color: #269ABC;
+   }
+
+
+.button:focus {
+    color: #FFF;
+    background-color: #31B0D5;
+    border-color: #1B6D85;
+}
+
+/**/
+.BContent
+{
+    /*background-color: #31B0D5;*/
+}
+
+.M2
+{
+   position: relative;
+    display: block;
+    /* background: #ddd; */
+    color: #444;
+    text-decoration: none;
+    border-radius: .3em;
+    transition: all .3s ease-out;
+    color: #666666;
+    text-decoration: none;
+    padding: 3px 8px;
+    /* float: left; */
+    margin: -1px 0px 0px -6px;
+    padding: 4px -12px 19px 10px;
+}
+
+
+.M2 h2
+{
+position: relative;
+display: block;
+border-radius: 0.3em;
+transition: all 0.3s ease-out 0s;
+color: #FBFBFB;
+text-decoration: none;
+padding: 3px 8px;
+margin: 30px 0px 6px -2px;
+font-weight: bold;
+background-color: #101011;
+width: 954px;
+}
+
+.M2 a
+{
+    position: relative;
+    display: block;
+    border-radius: 6px;
+    transition: all 0.3s ease-out 0s;
+    color: #FFF;
+    text-decoration: none;
+    padding: 3px 8px;
+    font-weight: bold;
+    background-color: #68B9D2;
+    margin: 30px 0px 6px -2px;
+    font-size: 26px;
+    width: 357px;
+    vertical-align: middle;
+    box-shadow: 2px 1px 1px #000;
+    font-family: Helvetica,Arial,sans-serif;
+
+}
+
+    .M2 a:hover {
+        color: #FFF;
+background-color: #31B0D5;
+border-color: #269ABC;
+    }
+
+    /*E1*/
+
+    .E1 h2
+{
+position: relative;
+display: block;
+border-radius: 0.3em;
+transition: all 0.3s ease-out 0s;
+color: #FBFBFB;
+text-decoration: none;
+padding: 3px 8px;
+margin: 30px 0px 6px -2px;
+font-weight: bold;
+background-color: #101011;
+width: 954px;
+}
+
+.E1 P
+{
+    position: relative;
+    display: block;
+    border-radius: 6px;
+    transition: all 0.3s ease-out 0s;
+    color: #FD0606;
+    text-decoration: none;
+    padding: 3px 8px;
+    font-weight: bold;
+    background-color: #ffffff;
+    margin: 32px 0px 26px 0px;
+    font-size: 26px;
+    width: 953px;
+    vertical-align: middle;
+    box-shadow: 2px 1px 1px #000;
+    font-family: Helvetica,Arial,sans-serif;
+
+}
+
+.E1
+{
+    margin: 77px 0px 6px -2px;
+
+}
