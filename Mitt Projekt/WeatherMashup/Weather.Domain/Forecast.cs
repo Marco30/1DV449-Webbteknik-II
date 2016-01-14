@@ -8,11 +8,9 @@ using System.Xml.Linq;
 
 namespace Weather.Domain
 {
-    public partial class Forecast
+    public partial class Forecast// en partial klass som slås ihop med klassen som representerar all fällt i DB tabellen, som finns i DatamModel mappen
     {
-        public Forecast()
-        {
-        }
+
         public Forecast(XElement day, int cityId, DateTime lastUpdate, DateTime nextUpdate)
         {
             CityID = cityId;

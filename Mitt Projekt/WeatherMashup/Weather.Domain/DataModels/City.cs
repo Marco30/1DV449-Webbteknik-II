@@ -14,10 +14,10 @@ namespace Weather.Domain
     
     public partial class City
     {
-        /*public City()
+        public City()
         {
             this.Forecasts = new HashSet<Forecast>();
-        }*/
+        }
     
         public int CityID { get; set; }
         public string Name { get; set; }

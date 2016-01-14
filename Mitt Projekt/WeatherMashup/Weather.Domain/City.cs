@@ -8,18 +8,15 @@ using System.Threading.Tasks;
 
 namespace Weather.Domain
 {
-    public partial class City
+    public partial class City// en partial klass som slås ihop med klassen som representerar all fällt i DB tabellen, som finns i DatamModel mappen
     {
-       public City()
+  
+        public City(JToken JasonCity)
         {
-            this.Forecasts = new HashSet<Forecast>();
-        }
-        public City(JToken cityToken)
-        {
-            string NLength = cityToken.Value<string>("name");
+            string NLength = JasonCity.Value<string>("name");
             Name = (NLength.Length > 30) ? NLength.Substring(0, 25) + "." : NLength;
-            Region = cityToken.Value<string>("adminName1");
-            Country = cityToken.Value<string>("countryName");
+            Region = JasonCity.Value<string>("adminName1");
+            Country = JasonCity.Value<string>("countryName");
         }
     }
 }

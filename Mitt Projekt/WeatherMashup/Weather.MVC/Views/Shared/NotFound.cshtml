@@ -1,13 +1,16 @@
 ﻿@{
     ViewBag.Title = "Page Not Found";
 }
+<div class="E1">
 
-<h1>Error, Page Not Found</h1>
+    <h2>Error, Page Not Found</h2>
 
-<p>Sidan kunde inte hittas!!!</p>
+    <p>Sidan kunde inte hittas!!!</p>
 
-@Html.ActionLink("Tillbaks till startsidan!", "Index", "Weather")
+   </div>
 
-@* Error page must be longer than 512 bytes for IE and Chrome to show it.
-    So add padding in case we're short. *@
-@(new string(' ', 512))
+    @Html.ActionLink("Tillbaks till startsidan!", "Index", "Weather")
+
+    @* Error page must be longer than 512 bytes for IE and Chrome to show it.
+        So add padding in case we're short. *@
+    @(new string(' ', 512))

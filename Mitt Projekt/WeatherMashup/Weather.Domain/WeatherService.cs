@@ -25,81 +25,81 @@ namespace Weather.Domain
             _yrnoAPIservice = yrnoAPIservice;
         }
 
-        public override IEnumerable<City> GetCity(string cityName)
+        public override IEnumerable<City> GetCity(string cityName)// fukntion som söker i dattabasen eller API 
         {
             //
             IEnumerable<City> city;
             //
 
-            if (_geonameAPIservice.GeonamesAPIResponseTest() == false)
+            if (_geonameAPIservice.GeonamesAPIResponseTest() == false)// om api är nere så söker man i databasen 
             {
                 //
 
-               city = _repository.FindCityByName(cityName);
+               city = _repository.FindCityByName(cityName);// söker i database 
 
                 //
 
             }
 
-            else
+            else// api funkar 
             {
               
-               city = _repository.FindCityByName(cityName);
+               city = _repository.FindCityByName(cityName);// kontrlerar för som sökningen redan finns i databasen 
 
-                if (city.Count() == 0)
+               if (city.Count() == 0)// inget matchar sökningen i databasen
                 {
-                    city = _geonameAPIservice.GetCity(cityName);
+                    city = _geonameAPIservice.GetCity(cityName);// söker hos APIen
 
-                    _repository.AddCity(city);
-                    _repository.Save();
+                    _repository.AddCity(city);// kalar på funktion som ska läga till stad i databasen
+                    _repository.Save();// kalar på funktion som ska spara ändringar till databasen 
                 }
             }
 
             return city;
         }
 
-        public override City FindCity(int id)
+        public override City FindCity(int id)// lättar efter stad med hjälp av id i databasen 
         {
             return _repository.FindCityById(id);
         }
 
-        public override IEnumerable<Forecast> GetForecast(City city)
+        public override IEnumerable<Forecast> GetForecast(City city)// fukntion som söker i dattabasen eller API 
         {
 
             IEnumerable<Forecast> forecast;
             
             //
-            if (_yrnoAPIservice.YrNoAPIResponseTest() == false)
+            if (_yrnoAPIservice.YrNoAPIResponseTest() == false)// om api är nere så söker man i databasen 
             {
             //
-                forecast = _repository.FindForecast(city.CityID);
+                forecast = _repository.FindForecast(city.CityID);// söker i databas 
 
             //
             }
-            else
+            else// api funkar 
             {
-               
-                forecast = _repository.FindForecast(city.CityID);
 
-                if (forecast.Count() == 0)
+                forecast = _repository.FindForecast(city.CityID);// söker i databas 
+
+                if (forecast.Count() == 0)// fins inte i databas 
                 {
-                    forecast = _yrnoAPIservice.GetForecast(city);
-                    _repository.AddForecast(forecast);
-                    _repository.Save();
+                    forecast = _yrnoAPIservice.GetForecast(city);// söker i API
+                    _repository.AddForecast(forecast);// läger till i databas 
+                    _repository.Save();// sparar datan till databas 
                 }
-                else
+                else// kontrolerar om väder datan fortfarande är aktuell 
                 {
-                    foreach (Forecast item in forecast)
+                    foreach (Forecast item in forecast)// lopar igen och kontroelrar dataum
                     {
-                        if (item.NextUpdate < DateTime.Now)
+                        if (item.NextUpdate < DateTime.Now)// if satsen körs om datum är gammal 
                         {
-                            _repository.DeleteForecast(forecast);
-                            _repository.Save();
+                            _repository.DeleteForecast(forecast);// tar bort från databasen 
+                            _repository.Save();//sparar ändringen  
 
-                            forecast = _yrnoAPIservice.GetForecast(city);
+                            forecast = _yrnoAPIservice.GetForecast(city);// söker efter aktuell  data i API
 
-                            _repository.AddForecast(forecast);
-                            _repository.Save();
+                            _repository.AddForecast(forecast);// kalar på funktion som ska läga till stad i databasen
+                            _repository.Save();//kalar på funktion som sparar datan till databasen 
                             break;
                         }
                     }
@@ -111,36 +111,36 @@ namespace Weather.Domain
         }
 
         //test 
-        public override bool GResponseTest()
+        public override bool GResponseTest()// Funktion som kontrollerar om Geonames API är nere 
         {
 
             if (_geonameAPIservice.GeonamesAPIResponseTest() == true)
             {
-                return true;
+                return true;// funkar
             }
             else
             {
-                return false;
+                return false;// är nere 
             }
         }
 
         //
-        public override bool YResponseTest()
+        public override bool YResponseTest()// Funktion som kontrollerar om YrNo API är nere 
         {
 
             if (_yrnoAPIservice.YrNoAPIResponseTest() == true)
             {
-                return true;
+                return true;// funkar
             }
             else
             {
-                return false;
+                return false;// är nere 
             }
         }
 
         //
 
-        protected override void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)// används för att frigöra Ohanterade resurser 
         {
             _repository.Dispose();
             base.Dispose(disposing);

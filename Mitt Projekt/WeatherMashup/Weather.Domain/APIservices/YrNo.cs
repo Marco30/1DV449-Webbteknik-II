@@ -12,7 +12,24 @@ namespace Weather.Domain.APIservices
 {
     public class YrNO : IYrNo
     {
-        public IEnumerable<Forecast> GetForecast(City city)
+
+        public bool YrNoAPIResponseTest()// YRNO API funktion som tästar om API funkar 
+        {
+            try
+            {
+                string APITest = "http://www.yr.no/sted/Sverige/stockholm/huddinge/forecast.xml";
+                XDocument xDoc = XDocument.Load(APITest);
+
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public IEnumerable<Forecast> GetForecast(City city)// YRNO API funktion, hämtar alla väder prognoser som matchar platsen man söker på
         {
             XElement xml = XElement.Load("http://www.yr.no/sted/" + city.Country + "/" + city.Region + "/" + city.Name + "/forecast.xml");
 
@@ -36,7 +53,7 @@ namespace Weather.Domain.APIservices
             return list;
         }
 
-        public DateTime FixesTheDate(string dateTime)
+        public DateTime FixesTheDate(string dateTime)//funtion som redigera XML filsen tid data vi får 
         {
             var dateSplit = dateTime.Split('T');
             string date = dateSplit[0];
@@ -48,21 +65,7 @@ namespace Weather.Domain.APIservices
             return stringToDateTime;
         }
 
-        public bool YrNoAPIResponseTest()
-        {
-            try
-            {
-                string APITest = "http://www.yr.no/sted/Sverige/stockholm/huddinge/forecast.xml";
-                XDocument xDoc = XDocument.Load(APITest);
-
-                return true;
-
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
+   
 
     }
 }
