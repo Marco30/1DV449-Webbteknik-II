@@ -1,8 +1,7 @@
 ﻿CACHE MANIFEST 
-# version 22
+# version 31
 
 CACHE:
-Content/bootstrap.min.css
 Content/bootstrap.css
 Content/Site.css
 IndexOffline.html
