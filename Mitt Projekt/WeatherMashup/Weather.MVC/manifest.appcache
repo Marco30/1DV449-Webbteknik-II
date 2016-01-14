@@ -1,5 +1,5 @@
 ﻿CACHE MANIFEST 
-# version 20
+# version 22
 
 CACHE:
 Content/bootstrap.min.css
@@ -9,6 +9,7 @@ IndexOffline.html
 Scripts/respond.min.js
 Scripts/offline.js
 Scripts/online.js
+5C.png
 
 FALLBACK: 
 /IndexOffline.html
