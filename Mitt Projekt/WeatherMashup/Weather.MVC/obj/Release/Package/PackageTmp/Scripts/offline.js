@@ -28,7 +28,8 @@ var MinOffline =
         checkJSNetConnection: function ()
         {
             var xhr = new XMLHttpRequest();
-            var file = "http://vhost9.lnu.se:20081/1dv409/mv222fp/Marco.png";
+            //var file = "http://vhost9.lnu.se:20081/1dv409/mv222fp/Marco.png";
+            var file = "http://vhost9.lnu.se:20081/1dv409/mv222fp/olinetest.html";
             var r = Math.round(Math.random() * 10000);
             xhr.open('HEAD', file + "?subins=" + r, false);
             try

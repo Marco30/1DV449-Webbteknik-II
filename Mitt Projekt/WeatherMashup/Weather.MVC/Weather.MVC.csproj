@@ -135,10 +135,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="IndexOffline.html" />
     <Content Include="Marco.png" />
+    <Content Include="olinetest.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="manifest.appcache" />
-    <None Include="Properties\PublishProfiles\G.pubxml" />
+    <None Include="Properties\PublishProfiles\M.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
